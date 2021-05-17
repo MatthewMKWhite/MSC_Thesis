@@ -21,6 +21,34 @@ SESSION_CONFIGS = [
         display_name='MattTest123',
         num_demo_participants = 3,
         app_sequence=['my_survey_test']
+    ),
+
+    dict(
+        name='sumcalc',
+        display_name='Sum Calculation',
+        num_demo_participants=3,
+        app_sequence=['my_survey_test']
+    ),
+
+    dict(
+        name='imagelike',
+        display_name='Like an Image',
+        num_demo_participants=3,
+        app_sequence=['my_survey_test']
+    ),
+
+    dict(
+        name='visualtrace',
+        display_name='Visual Trace',
+        num_demo_participants=3,
+        app_sequence=['my_survey_test']
+    ),
+
+dict(
+        name='check_VT',
+        display_name='MouseTrack',
+        num_demo_participants=3,
+        app_sequence=['check_VT']
     )
 ]
 
