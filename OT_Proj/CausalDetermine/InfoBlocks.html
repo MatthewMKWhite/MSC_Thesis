@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+{{ block title }}
+    Information Blocks
+{{ endblock }}
+{% block content %}
+
+    <meta charset="UTF-8">
+    Lorem Ipsum (Instructions)<p></p>
+
+
+    <table style="table-layout: fixed; width:100%" >
+    <tr>
+        <td>
+
+        </td>
+        <td>
+            <button type="button" class="hover" id="b1" style="width:100%; height:100px" onmouseover="Button1MouseOn()"
+                    onmouseout="Button1MouseOff()" >
+
+            </button>
+        </td>
+        <td>
+
+        </td>
+        <td>
+            <button type="button" class="hover" id="b2" style="width:100%; height:100px" onmouseover="Button2MouseOn()"
+                    onmouseout="Button2MouseOff()">
+
+            </button>
+        </td>
+        <td>
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button type="button" id="b3" style="width:100%; height:100px" onmouseover="Button3MouseOn()"
+                    onmouseout="Button3MouseOff()">
+
+            </button>
+        </td>
+        <td>
+
+        </td>
+        <td>
+
+        </td>
+        <td>
+
+        </td>
+        <td>
+            <button type="button" id="b4" style="width:100%; height:100px" onmouseover="Button4MouseOn()"
+                    onmouseout="Button4MouseOff()">
+            </button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+
+        </td>
+        <td>
+            <button type="button" id="b5" style="width:100%; height:100px" onmouseover="Button5MouseOn()"
+                    onmouseout="Button5MouseOff()">
+            </button>
+        </td>
+        <td>
+
+        </td>
+        <td>
+            <button type="button"  id="b6" style="width:100%; height:100px" onmouseover="Button6MouseOn()"
+                    onmouseout="Button6MouseOff()">
+
+            </button>
+        </td>
+        <td>
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+
+        </td>
+        <td>
+
+        </td>
+        <td>
+            <button type="button" id="b7" style="width:100%; height:100px" onmouseover="Button7MouseOn()"
+                    onmouseout="Button7MouseOff()">
+
+            </button>
+        </td>
+        <td>
+
+        </td>
+        <td>
+
+        </td>
+    </tr>
+    </table>
+    <p>
+    </p>
+    {{ next_button }}
+
+<input type="hidden" name="Timeb1" id="Timeb1" />
+
+
+<script>
+
+let But1 = document.createElement("input");
+    But1.type = 'hidden';
+    But1.name = 'Timeb1';
+    But1.id = 'Timeb1';
+    But1.value = '0';
+
+document.addEventListener("DOMContentLoaded", function(debug=true) {
+        console.log('Loading info');
+
+        let OtreeBody     = document.getElementsByClassName("_otree-content")[0];
+        OtreeBody.appendChild(But1);}
+
+function Button1MouseOn() {
+  document.getElementById("b1").innerHTML = "Agent";
+  var b1_start = performance.now();
+}
+
+function Button1MouseOff() {
+  document.getElementById("b1").innerHTML = "";
+  var b1_stop = performance.now()
+  var Time_b1 = Time_b1 + (b1_stop - b1_start)
+}
+
+
+function Button2MouseOn() {
+  document.getElementById("b2").innerHTML = "Outcome1";
+}
+
+function Button2MouseOff() {
+  document.getElementById("b2").innerHTML = "";
+}
+
+function Button3MouseOn() {
+  document.getElementById("b3").innerHTML = "Dummy";
+}
+
+function Button3MouseOff() {
+  document.getElementById("b3").innerHTML = "";
+}
+
+function Button4MouseOn() {
+  document.getElementById("b4").innerHTML = "Incentives";
+}
+
+function Button4MouseOff() {
+  document.getElementById("b4").innerHTML = "";
+}
+
+function Button5MouseOn() {
+  document.getElementById("b5").innerHTML = "Pivotality";
+}
+
+function Button5MouseOff() {
+  document.getElementById("b5").innerHTML = "";
+}
+
+function Button6MouseOn() {
+  document.getElementById("b6").innerHTML = "Action";
+}
+
+function Button6MouseOff() {
+  document.getElementById("b6").innerHTML = "";
+}
+
+function Button7MouseOn() {
+  document.getElementById("b7").innerHTML = "Outcome2";
+}
+
+function Button7MouseOff() {
+  document.getElementById("b7").innerHTML = "";
+}
+
+</script>
+
+{{ endblock }}

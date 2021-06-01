@@ -46,9 +46,16 @@ SESSION_CONFIGS = [
 
 dict(
         name='check_VT',
-        display_name='MouseTrack',
+        display_name='check_VT',
         num_demo_participants=3,
         app_sequence=['check_VT']
+    ),
+
+dict(
+        name='CausalDetermine',
+        display_name='CausalDetermine',
+        num_demo_participants=3,
+        app_sequence=['CausalDetermine']
     )
 ]
 

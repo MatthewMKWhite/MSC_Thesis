@@ -29,7 +29,8 @@ class Player(BasePlayer):
 class buttons(Page):
     pass
 
+class Mouseover(Page):
+    pass
 
 
-
-page_sequence = [buttons]
+page_sequence = [buttons, Mouseover]

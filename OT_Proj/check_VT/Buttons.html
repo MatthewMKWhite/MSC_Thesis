@@ -9,7 +9,7 @@
     <tr> 
         <td>
             <button type="button" class="row" id="b1"> 
-                Show This Row!
+                Show This Row3!
             </button>
         </td>
         <td>
@@ -50,7 +50,9 @@
         // Convert all buttons with the class 'mousy' into mouseover VT buttons
         ConvertButtons2VT('mousy',sActivation='mouseover');
         // Convert all buttons with the class 'row' into click VT buttons that activate outcome-buttons with the class 'r1'
-      //  ConvertButtons2VT('row',sActivation='click', 'r1');
-    });
+        ConvertButtons2VT('row',sActivation='click', 'r1');
+    })
+
+
 </script>
 {% endblock %}
