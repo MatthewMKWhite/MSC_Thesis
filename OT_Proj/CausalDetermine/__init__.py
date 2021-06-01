@@ -25,7 +25,7 @@ class Player(BasePlayer):
     CausalScore = models.StringField(widget=widgets.RadioSelectHorizontal, choices=['Not at all', 'Very Slightly', 'Slightly', 'Neutral', 'Moderately', 'Very much',
                                                                                      'Almost Entirely'])
     BonusScore = models.IntegerField(widget=widgets.RadioSelectHorizontal, choices=[-10, -1, 0, 1, 10], label="Reccomended bonus (%): ")
-    Timeb1 = models.IntegerField()
+    Timeb1 = models.FloatField(blank=True, default=0.0)
 
 # PAGES
 class Consent(Page):

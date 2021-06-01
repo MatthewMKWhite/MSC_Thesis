@@ -8,7 +8,6 @@
     <meta charset="UTF-8">
     Lorem Ipsum (Instructions)<p></p>
 
-
     <table style="table-layout: fixed; width:100%" >
     <tr>
         <td>
@@ -108,26 +107,32 @@
 <script>
 
 let But1 = document.createElement("input");
-    But1.type = 'hidden';
-    But1.name = 'Timeb1';
-    But1.id = 'Timeb1';
-    But1.value = '0';
+But1.type = 'hidden';
+But1.name = 'Timeb1';
+But1.id = 'Timeb1';
+But1.value = '0';
+var b1_start = {id: b1_start}
+var b1_culm = {id: b1_culm}
+b1_culm = 0;
+
+
 
 document.addEventListener("DOMContentLoaded", function(debug=true) {
         console.log('Loading info');
 
         let OtreeBody     = document.getElementsByClassName("_otree-content")[0];
-        OtreeBody.appendChild(But1);}
+        OtreeBody.appendChild(But1);})
 
 function Button1MouseOn() {
   document.getElementById("b1").innerHTML = "Agent";
-  var b1_start = performance.now();
+  b1_start = Date.now();
 }
 
 function Button1MouseOff() {
   document.getElementById("b1").innerHTML = "";
-  var b1_stop = performance.now()
-  var Time_b1 = Time_b1 + (b1_stop - b1_start)
+  var b1_end = Date.now() - b1_start
+  b1_culm = b1_culm + b1_end
+  document.getElementById("Timeb1").value = b1_culm;
 }
 
 
@@ -178,6 +183,7 @@ function Button7MouseOn() {
 function Button7MouseOff() {
   document.getElementById("b7").innerHTML = "";
 }
+
 
 </script>
 
