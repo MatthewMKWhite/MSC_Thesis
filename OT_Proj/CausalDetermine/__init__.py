@@ -52,6 +52,7 @@ class Player(BasePlayer):
     KeepPosted = models.BooleanField(widget=widgets.CheckboxInput(), label="I would like a copy of the working paper when it becomes available", blank=True)
 
 # Functions
+@staticmethod
 def response_outcome(player: Player):
     if player.Context == "Business":
         OutcomeResponseTxt = "company's environmental footprint to " + player.Outcome2
@@ -59,6 +60,7 @@ def response_outcome(player: Player):
         OutcomeResponseTxt = "their team to " + player.Outcome2
     return OutcomeResponseTxt
 
+@staticmethod
 def context_description(player: Player):
     if player.Context == "Football":
         Context_Descr = "In the Football scenario, the agent can either choose to shoot to attempt to score a goal, or can pass the ball to allow another teammate to shoot. This can result in either a goal being scored or not, which ultimately leads to the final outcome of whether or not the team loses. For the sake of this experiment, assume that you support the team for which the agent is playing. "
@@ -66,6 +68,7 @@ def context_description(player: Player):
         Context_Descr = "In the Business scenario, the agent chooses between adopting a new policy or staying with the same policy. Based on this decision, the company will see a change in their profits, as well as in their environmental footprint. The environmental impact is the ‘end outcome’ for which you will indicate the causal responsibility attributed to the agent. "
     return Context_Descr
 
+@staticmethod
 def creating_session(subsession):
     import itertools
     FieldOrders = itertools.cycle(["A", "B", "C"])
@@ -112,6 +115,7 @@ class Response(Page):
 class InfoBlocks(Page):
     form_model = 'player'
     form_fields = ['Timeb1', 'Timeb2', 'Timeb3', 'Timeb4', 'Timeb5', 'Timeb6', 'Timeb7']
+    @staticmethod
     def js_vars(player):
         return dict(
             InfoOrder = player.InfoOrderGroup,
@@ -123,6 +127,8 @@ class InfoBlocks(Page):
             Pivotality = player.Pivotality,
             Context = player.Context
         )
+
+    @staticmethod
     def vars_for_template(player: Player):
         return dict(OutcomeResponseTxt=context_description(player))
 
@@ -151,10 +157,12 @@ class PostQuestions(Page):
 class Numeracy(Page):
     form_model = 'player'
     form_fields = ['Numeracy_Answer']
+    @staticmethod
     def is_displayed(player):
         return player.round_number == Constants.num_rounds    # only display in  last round
 
 class Closing(Page):
+    @staticmethod
     def is_displayed(player):
         return player.round_number == Constants.num_rounds    # only display in  last round
 
