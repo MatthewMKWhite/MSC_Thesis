@@ -2,54 +2,7 @@ from os import environ
 
 
 SESSION_CONFIGS = [
-    dict(
-        name='public_goods',
-        app_sequence=['public_goods', 'payment_info'],
-        num_demo_participants=3,
-    ),
-    dict(
-        name='guess_two_thirds',
-        display_name="Guess 2/3 of the Average",
-        app_sequence=['guess_two_thirds', 'payment_info'],
-        num_demo_participants=3,
-    ),
-    dict(
-        name='survey', app_sequence=['survey', 'payment_info'], num_demo_participants=1
-    ),
-    dict(
-        name='my_survey_test',
-        display_name='MattTest123',
-        num_demo_participants = 3,
-        app_sequence=['my_survey_test']
-    ),
 
-    dict(
-        name='sumcalc',
-        display_name='Sum Calculation',
-        num_demo_participants=3,
-        app_sequence=['my_survey_test']
-    ),
-
-    dict(
-        name='imagelike',
-        display_name='Like an Image',
-        num_demo_participants=3,
-        app_sequence=['my_survey_test']
-    ),
-
-    dict(
-        name='visualtrace',
-        display_name='Visual Trace',
-        num_demo_participants=3,
-        app_sequence=['my_survey_test']
-    ),
-
-dict(
-        name='check_VT',
-        display_name='check_VT',
-        num_demo_participants=3,
-        app_sequence=['check_VT']
-    ),
 
 dict(
         name='CausalDetermine',
@@ -91,7 +44,7 @@ ADMIN_USERNAME = 'admin'
 ADMIN_PASSWORD = environ.get('OTREE_ADMIN_PASSWORD')
 
 DEMO_PAGE_INTRO_HTML = """
-Here are some oTree games.
+CausalityDetermine
 """
 
 
