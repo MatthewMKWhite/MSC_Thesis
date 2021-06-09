@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{{ block title }}
+    Post Experiment Questions
+{{ endblock }}
+{{ block content }}
+    <p>
+        <b>Thank you!</b> <br><br> On this final page you will be asked for some of your personal details. Please note that this information is strictly for reporting purposes, and will not be linked to you as an individual in any way.
+<br>
+        {{ formfield 'Age' }}
+        {{ formfield 'Nationality' }}
+        {{ formfield 'Education' }}
+        {{ formfield 'Employment' }}
+<br>
+
+        Please also provide a valid <b>email address</b> where we contact you to announce the winners of the lottery draw.
+        {{ formfield 'Email_Address' }}
+<br>
+        If you are interested in the results of this experiment, and would like to receive a copy of the paper upon its completion, please indicate this below:
+        <br><br>
+        {{ formfield 'KeepPosted' }}
+        <br><br>
+    </p>
+{{ next_button }}
+{{ endblock }}
