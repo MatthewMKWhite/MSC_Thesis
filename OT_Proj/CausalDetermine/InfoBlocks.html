@@ -6,8 +6,9 @@
 {% block content %}
 
     <meta charset="UTF-8">
-    Lorem Ipsum (Instructions)<p></p>
-
+<p><b>Context:</b> <i>{{ player.Context }}</i></p>
+    <p> {{ OutcomeResponseTxt }}<br></p>
+<br>
     <table style="table-layout: fixed; width:100%" >
     <tr>
         <td>
@@ -102,10 +103,14 @@
     {{ next_button }}
 
 <input type="hidden" name="Timeb1" id="Timeb1" />
-
+<input type="hidden" name="Timeb2" id="Timeb2" />
+<input type="hidden" name="Timeb3" id="Timeb3" />
+<input type="hidden" name="Timeb4" id="Timeb4" />
+<input type="hidden" name="Timeb5" id="Timeb5" />
+<input type="hidden" name="Timeb6" id="Timeb6" />
+<input type="hidden" name="Timeb7" id="Timeb7" />
 
 <script>
-
 let But1 = document.createElement("input");
 But1.type = 'hidden';
 But1.name = 'Timeb1';
@@ -115,17 +120,95 @@ var b1_start = {id: b1_start}
 var b1_culm = {id: b1_culm}
 b1_culm = 0;
 
+let But2 = document.createElement("input");
+But2.type = 'hidden';
+But2.name = 'Timeb1';
+But2.id = 'Timeb1';
+But2.value = '0';
+var b2_start = {id: b2_start}
+var b2_culm = {id: b2_culm}
+b2_culm = 0;
 
+let But3 = document.createElement("input");
+But3.type = 'hidden';
+But3.name = 'Timeb3';
+But3.id = 'Timeb3';
+But3.value = '0';
+var b3_start = {id: b3_start}
+var b3_culm = {id: b3_culm}
+b3_culm = 0;
+
+let But4 = document.createElement("input");
+But4.type = 'hidden';
+But4.name = 'Timeb4';
+But4.id = 'Timeb4';
+But4.value = '0';
+var b4_start = {id: b4_start}
+var b4_culm = {id: b4_culm}
+b4_culm = 0;
+
+let But5 = document.createElement("input");
+But5.type = 'hidden';
+But5.name = 'Timeb5';
+But5.id = 'Timeb5';
+But5.value = '0';
+var b5_start = {id: b5_start}
+var b5_culm = {id: b5_culm}
+b5_culm = 0;
+
+let But6 = document.createElement("input");
+But6.type = 'hidden';
+But6.name = 'Timeb6';
+But6.id = 'Timeb6';
+But6.value = '0';
+var b6_start = {id: b6_start}
+var b6_culm = {id: b6_culm}
+b6_culm = 0;
+
+let But7 = document.createElement("input");
+But7.type = 'hidden';
+But7.name = 'Timeb7';
+But7.id = 'Timeb7';
+But7.value = '0';
+var b7_start = {id: b7_start}
+var b7_culm = {id: b7_culm}
+b7_culm = 0;
+
+let InfoOrder = js_vars.InfoOrder
+let Agent = js_vars.Agent
+let Outcome1 = js_vars.Outcome1
+let Outcome2 = js_vars.Outcome2
+let Action = js_vars.Action
+let Incentive = js_vars.Incentive
+let Pivotality = js_vars.Pivotality
+let Context = js_vars.Context
+var Dummy = "Dummy text"
+var AgentFiller = "Agent is a "
+var FootballOutcomeFiller = "The agent's team "
+var BusinessOutcomeFiller = "The company's environmental footprint "
+var IncentiveFiller = "Incentives are paid based on "
 
 document.addEventListener("DOMContentLoaded", function(debug=true) {
         console.log('Loading info');
 
         let OtreeBody     = document.getElementsByClassName("_otree-content")[0];
-        OtreeBody.appendChild(But1);})
+            OtreeBody.appendChild(But1)
+            OtreeBody.appendChild(But2)
+            OtreeBody.appendChild(But3)
+            OtreeBody.appendChild(But4)
+            OtreeBody.appendChild(But5)
+            OtreeBody.appendChild(But6)
+            OtreeBody.appendChild(But7)
+        ;})
 
 function Button1MouseOn() {
-  document.getElementById("b1").innerHTML = "Agent";
   b1_start = Date.now();
+  if (InfoOrder == "A" || (InfoOrder == "B" && Context=="Football")){
+    document.getElementById("b1").innerHTML = AgentFiller.concat(Agent);}
+  else if (Context == "Business"){
+    document.getElementById("b1").innerHTML = Action;}
+  else if (InfoOrder == "C" && (Context=="Football")){
+    document.getElementById("b1").innerHTML = Outcome1;}
 }
 
 function Button1MouseOff() {
@@ -137,51 +220,108 @@ function Button1MouseOff() {
 
 
 function Button2MouseOn() {
-  document.getElementById("b2").innerHTML = "Outcome1";
+  b2_start = Date.now();
+  if (InfoOrder == "A" || (InfoOrder == "B" && Context=="Football")){
+    document.getElementById("b2").innerHTML = Action;}
+  else if (Context == "Business"){
+    document.getElementById("b2").innerHTML = IncentiveFiller.concat(Incentive);}
+  else if (InfoOrder == "C" && (Context=="Football")){
+    document.getElementById("b2").innerHTML = Dummy;}
 }
 
 function Button2MouseOff() {
   document.getElementById("b2").innerHTML = "";
+  var b2_end = Date.now() - b2_start
+  b2_culm = b2_culm + b2_end
+  document.getElementById("Timeb2").value = b2_culm;
 }
 
 function Button3MouseOn() {
-  document.getElementById("b3").innerHTML = "Dummy";
+  b3_start = Date.now();
+  if (InfoOrder == "A" || (InfoOrder == "B" && Context=="Football")){
+    document.getElementById("b3").innerHTML = IncentiveFiller.concat(Incentive);}
+  else if (Context == "Business"){
+    document.getElementById("b3").innerHTML = Outcome1;}
+  else if (InfoOrder == "C" && (Context=="Football")){
+    document.getElementById("b3").innerHTML = AgentFiller.concat(Agent);}
 }
 
 function Button3MouseOff() {
   document.getElementById("b3").innerHTML = "";
+  var b3_end = Date.now() - b3_start
+  b3_culm = b3_culm + b3_end
+  document.getElementById("Timeb3").value = b3_culm;
 }
 
 function Button4MouseOn() {
-  document.getElementById("b4").innerHTML = "Incentives";
+  b4_start = Date.now();
+  if (InfoOrder == "A" || (InfoOrder == "B" && Context=="Football")){
+    document.getElementById("b4").innerHTML = Pivotality;}
+  else if (Context == "Business"){
+    document.getElementById("b4").innerHTML = AgentFiller.concat(Agent);}
+  else if (InfoOrder == "C" && (Context=="Football")){
+    document.getElementById("b4").innerHTML = IncentiveFiller.concat(Incentive);}
 }
 
 function Button4MouseOff() {
   document.getElementById("b4").innerHTML = "";
+  var b4_end = Date.now() - b4_start
+  b4_culm = b4_culm + b4_end
+  document.getElementById("Timeb4").value = b4_culm;
 }
 
 function Button5MouseOn() {
-  document.getElementById("b5").innerHTML = "Pivotality";
+  b5_start = Date.now();
+  if (InfoOrder == "A" || (InfoOrder == "B" && Context=="Football")){
+    document.getElementById("b5").innerHTML = Outcome1;}
+  else if (Context == "Business"){
+    document.getElementById("b5").innerHTML = Dummy;}
+  else if (InfoOrder == "C" && (Context=="Football")){
+    document.getElementById("b5").innerHTML = FootballOutcomeFiller.concat(Outcome2).concat("s");}
 }
 
 function Button5MouseOff() {
   document.getElementById("b5").innerHTML = "";
+  var b5_end = Date.now() - b5_start
+  b5_culm = b5_culm + b5_end
+  document.getElementById("Timeb5").value = b5_culm;
 }
 
 function Button6MouseOn() {
-  document.getElementById("b6").innerHTML = "Action";
+  b6_start = Date.now();
+  if (InfoOrder == "A" || (InfoOrder == "B" && Context=="Football")){
+    document.getElementById("b6").innerHTML = Dummy;}
+  else if (Context == "Business"){
+    document.getElementById("b6").innerHTML = BusinessOutcomeFiller.concat(Outcome2).concat("s");}
+  else if (InfoOrder == "C" && (Context=="Football")){
+    document.getElementById("b6").innerHTML = Pivotality;}
 }
 
 function Button6MouseOff() {
   document.getElementById("b6").innerHTML = "";
+  var b6_end = Date.now() - b6_start
+  b6_culm = b6_culm + b6_end
+  document.getElementById("Timeb6").value = b6_culm;
 }
 
 function Button7MouseOn() {
-  document.getElementById("b7").innerHTML = "Outcome2";
+  b7_start = Date.now();
+  if (InfoOrder == "A" || (InfoOrder == "B" && Context=="Football")){
+    if (Context=="Football")
+        document.getElementById("b7").innerHTML = FootballOutcomeFiller.concat(Outcome2).concat("s");
+    else if (Context=="Business")
+        document.getElementById("b7").innerHTML = BusinessOutcomeFiller.concat(Outcome2).concat("s");}
+  else if (Context == "Business"){
+    document.getElementById("b7").innerHTML = Pivotality;}
+  else if (InfoOrder == "C" && (Context=="Football")){
+    document.getElementById("b7").innerHTML = Action;}
 }
 
 function Button7MouseOff() {
   document.getElementById("b7").innerHTML = "";
+  var b7_end = Date.now() - b7_start
+  b7_culm = b7_culm + b7_end
+  document.getElementById("Timeb7").value = b7_culm;
 }
 
 

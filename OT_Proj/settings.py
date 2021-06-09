@@ -55,6 +55,7 @@ dict(
         name='CausalDetermine',
         display_name='CausalDetermine',
         num_demo_participants=3,
+        PARTICIPANT_FIELDS=['InfoOrder', 'ParticipantNum'],
         app_sequence=['CausalDetermine']
     )
 ]
