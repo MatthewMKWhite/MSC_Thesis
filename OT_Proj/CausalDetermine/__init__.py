@@ -8,7 +8,7 @@ Causal Determination Mouse-tracking experiment
 class Constants(BaseConstants):
     name_in_url = 'CausalDetermine'
     players_per_group = None
-    num_rounds = 3 # 32 (testing)
+    num_rounds = 32
 
 
 class Subsession(BaseSubsession):
@@ -23,7 +23,7 @@ class Player(BasePlayer):
     GivesConsent = models.BooleanField(widget=widgets.CheckboxInput(), label="Agree")
     CausalScore = models.StringField(widget=widgets.RadioSelectHorizontal, choices=['Not at all', 'Very Slightly', 'Slightly', 'Neutral', 'Moderately', 'Very much',
                                                                                      'Almost Entirely'], label="Causal Attribution: ")
-    BonusScore = models.IntegerField(widget=widgets.RadioSelectHorizontal, choices=[-10, -1, 0, 1, 10], label="Bonus Attribution (%): ")
+    BonusScore = models.IntegerField(widget=widgets.RadioSelectHorizontal, choices=[[-10,'-10%'], [-1,'-1%'], [0,'0%'], [1,'1%'], [10,'10%']], label="Bonus Attribution: ")
     Timeb1 = models.FloatField(blank=True, default=0.0)
     Timeb2 = models.FloatField(blank=True, default=0.0)
     Timeb3 = models.FloatField(blank=True, default=0.0)
@@ -42,6 +42,7 @@ class Player(BasePlayer):
     Incentive = models.StringField()
     Pivotality = models.StringField()
     Context = models.StringField()
+    Dummy1 = models.StringField()
 
     Numeracy_Answer = models.IntegerField(label="Answer (%): ")
     Age = models.IntegerField(label="What is your age?: ")
@@ -49,10 +50,10 @@ class Player(BasePlayer):
     Education = models.StringField(choices=["0) None", "1) Highschool", "2) College Diploma", "3) Bachelors Degree", "4) Postgraduate Diploma/Honours Degree", "5) Master's Degree", "6) PhD or Higher"], label="Which of the following best describes the highest level of education you have completed? ")
     Employment = models.StringField(choices=["Unemployed", "Apprentice/Trainee", "Full-time student", "Employed part-time", "Employed full-time", "Self-Employed"], label="Which of the following best describes your current employment situation? ")
     Email_Address = models.StringField(blank=True, label="Email Address")
-    KeepPosted = models.BooleanField(widget=widgets.CheckboxInput(), label="I would like a copy of the working paper when it becomes available", blank=True)
+    KeepPosted = models.BooleanField(widget=widgets.CheckboxInput(), label="I would like to receive a copy of the working paper when it becomes available", blank=True)
 
 # Functions
-@staticmethod
+
 def response_outcome(player: Player):
     if player.Context == "Business":
         OutcomeResponseTxt = "company's environmental footprint to " + player.Outcome2
@@ -60,7 +61,7 @@ def response_outcome(player: Player):
         OutcomeResponseTxt = "their team to " + player.Outcome2
     return OutcomeResponseTxt
 
-@staticmethod
+
 def context_description(player: Player):
     if player.Context == "Football":
         Context_Descr = "In the Football scenario, the agent can either choose to shoot to attempt to score a goal, or can pass the ball to allow another teammate to shoot. This can result in either a goal being scored or not, which ultimately leads to the final outcome of whether or not the team loses. For the sake of this experiment, assume that you support the team for which the agent is playing. "
@@ -68,11 +69,11 @@ def context_description(player: Player):
         Context_Descr = "In the Business scenario, the agent chooses between adopting a new policy or staying with the same policy. Based on this decision, the company will see a change in their profits, as well as in their environmental footprint. The environmental impact is the ‘end outcome’ for which you will indicate the causal responsibility attributed to the agent. "
     return Context_Descr
 
-@staticmethod
 def creating_session(subsession):
     import itertools
     FieldOrders = itertools.cycle(["A", "B", "C"])
     PartOrders = itertools.cycle(range(1,61))
+    TempDummy = itertools.cycle(["A", "B"])  # Dummy variable doesn't need to be perfectly balanced
 
     if subsession.round_number == 1:
         for player in subsession.get_players():
@@ -82,6 +83,7 @@ def creating_session(subsession):
     for player in subsession.get_players():
         player.InfoOrderGroup = player.participant.vars['InfoOrder']
         player.Participant_order = player.participant.vars['ParticipantNum']
+        player.Dummy1 = next(TempDummy)
 
     import csv
     with open('Vignettes.csv', mode='r') as csv_file:
@@ -125,7 +127,8 @@ class InfoBlocks(Page):
             Action = player.Action,
             Incentive = player.Incentive,
             Pivotality = player.Pivotality,
-            Context = player.Context
+            Context = player.Context,
+            Dummy = player.Dummy1
         )
 
     @staticmethod
@@ -140,17 +143,19 @@ class Results(Page):
     pass
 
 class FixationCross(Page):
-    timeout_seconds = 2
+    timeout_seconds = 1.5
 
-    pass
 
 class ExperimentAlmostDone(Page):
+    @staticmethod
     def is_displayed(player):
         return player.round_number == Constants.num_rounds    # only display in  last round
 
 class PostQuestions(Page):
     form_model = 'player'
     form_fields = ['Age','Nationality','Education','Employment','Email_Address','KeepPosted']
+
+    @staticmethod
     def is_displayed(player):
         return player.round_number == Constants.num_rounds    # only display in  last round
 

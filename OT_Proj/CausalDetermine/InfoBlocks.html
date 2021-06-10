@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 {{ block title }}
-    Information Blocks
+Information Blocks
 {{ endblock }}
 {% block content %}
 
@@ -182,11 +182,32 @@ let Action = js_vars.Action
 let Incentive = js_vars.Incentive
 let Pivotality = js_vars.Pivotality
 let Context = js_vars.Context
-var Dummy = "Dummy text"
+let DummyCode = js_vars.Dummy
+
 var AgentFiller = "Agent is a "
 var FootballOutcomeFiller = "The agent's team "
 var BusinessOutcomeFiller = "The company's environmental footprint "
 var IncentiveFiller = "Incentives are paid based on "
+var DummyText="";
+var DummyFiller="";
+
+if(Context == "Business")
+    {
+    DummyFiller = "Company works in ";
+    if (DummyCode == "A")
+        {Dummy = "insurance"}
+    else
+        {Dummy = "banking"}
+    }
+else{
+    DummyFiller = "Agent was playing on ";
+    if (DummyCode == "A")
+        {Dummy = "home ground"}
+    else
+        {Dummy = "away ground"}
+    }
+
+
 
 document.addEventListener("DOMContentLoaded", function(debug=true) {
         console.log('Loading info');
@@ -226,7 +247,7 @@ function Button2MouseOn() {
   else if (Context == "Business"){
     document.getElementById("b2").innerHTML = IncentiveFiller.concat(Incentive);}
   else if (InfoOrder == "C" && (Context=="Football")){
-    document.getElementById("b2").innerHTML = Dummy;}
+    document.getElementById("b2").innerHTML = DummyFiller.concat(Dummy);}
 }
 
 function Button2MouseOff() {
@@ -275,7 +296,7 @@ function Button5MouseOn() {
   if (InfoOrder == "A" || (InfoOrder == "B" && Context=="Football")){
     document.getElementById("b5").innerHTML = Outcome1;}
   else if (Context == "Business"){
-    document.getElementById("b5").innerHTML = Dummy;}
+    document.getElementById("b5").innerHTML = DummyFiller.concat(Dummy);}
   else if (InfoOrder == "C" && (Context=="Football")){
     document.getElementById("b5").innerHTML = FootballOutcomeFiller.concat(Outcome2).concat("s");}
 }
@@ -290,7 +311,7 @@ function Button5MouseOff() {
 function Button6MouseOn() {
   b6_start = Date.now();
   if (InfoOrder == "A" || (InfoOrder == "B" && Context=="Football")){
-    document.getElementById("b6").innerHTML = Dummy;}
+    document.getElementById("b6").innerHTML = DummyFiller.concat(Dummy);}
   else if (Context == "Business"){
     document.getElementById("b6").innerHTML = BusinessOutcomeFiller.concat(Outcome2).concat("s");}
   else if (InfoOrder == "C" && (Context=="Football")){
