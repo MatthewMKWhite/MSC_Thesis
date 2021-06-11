@@ -56,7 +56,7 @@ class Player(BasePlayer):
 
 def response_outcome(player: Player):
     if player.Context == "Business":
-        OutcomeResponseTxt = "company's environmental footprint to " + player.Outcome2
+        OutcomeResponseTxt = "the company's environmental footprint to " + player.Outcome2
     elif player.Context == "Football":
         OutcomeResponseTxt = "their team to " + player.Outcome2
     return OutcomeResponseTxt
