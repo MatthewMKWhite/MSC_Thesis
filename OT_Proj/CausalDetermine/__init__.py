@@ -32,6 +32,14 @@ class Player(BasePlayer):
     Timeb6 = models.FloatField(blank=True, default=0.0)
     Timeb7 = models.FloatField(blank=True, default=0.0)
 
+    Viewsb1 = models.IntegerField(blank=True, default=0)
+    Viewsb2 = models.IntegerField(blank=True, default=0)
+    Viewsb3 = models.IntegerField(blank=True, default=0)
+    Viewsb4 = models.IntegerField(blank=True, default=0)
+    Viewsb5 = models.IntegerField(blank=True, default=0)
+    Viewsb6 = models.IntegerField(blank=True, default=0)
+    Viewsb7 = models.IntegerField(blank=True, default=0)
+
     InfoOrderGroup = models.StringField()
     Participant_order = models.IntegerField()
 
@@ -64,10 +72,89 @@ def response_outcome(player: Player):
 
 def context_description(player: Player):
     if player.Context == "Football":
-        Context_Descr = "In the Football scenario, the agent can either choose to shoot to attempt to score a goal, or can pass the ball to allow another teammate to shoot. This can result in either a goal being scored or not, which ultimately leads to the final outcome of whether or not the team loses. For the sake of this experiment, assume that you support the team for which the agent is playing. "
+        Context_Descr = "In the football scenario, the Agent is either a professional football player or a pre-programmed football-AI. This agent then, during a point in the game, is faced with either passing the ball, or shooting to try and score. Either way, this can result in a goal being scored off of the play, or not. The end outcome is then either a win or a loss at the end of the game, and that could be by various margins. For the sake of this experiment, assume that you support the team for which the agent is playing. <br><br><u>The question is: to what extent did the football agent cause their team to win/lose?</u> "
     elif player.Context == "Business":
-        Context_Descr = "In the Business scenario, the agent chooses between adopting a new policy or staying with the same policy. Based on this decision, the company will see a change in their profits, as well as in their environmental footprint. The environmental impact is the ‘end outcome’ for which you will indicate the causal responsibility attributed to the agent. "
+        Context_Descr = "In the business scenario, the Agent is either a senior business executive or a pre-programmed strategic-AI. This agent then votes on whether or not their firm should adopt a new business strategy. The individual’s vote can pass by one or more votes on the voting panel (we do not consider cases where the agent was outvoted). In the months following the chosen strategy, the company then either sees an increase or a decrease in their profits; as well as either an improvement or worsening of their environmental footprint. <br><br>The question is: to what extent did the strategy agent cause their firm’s environmental footprint to improve/worsen? "
     return Context_Descr
+
+def buttonlabels(player: Player):
+    if player.Context == "Football":
+        #Self made OR statement since OTree was being bitchy
+        if (player.InfoOrderGroup == "A" ) + (player.InfoOrderGroup == "B") >=1:
+            button1 = "Human/A.I."
+            button2 = "Shoot/Pass"
+            button3 = "Motivation"
+            button4 = "Win margin"
+            button5 = "Score/Miss"
+            button6 = "Home/Away"
+            button7 = "Win/Lose"
+        if player.InfoOrderGroup == "C":
+            button1 = "Score/Miss"
+            button2 = "Home/Away"
+            button3 = "Human/A.I."
+            button4 = "Motivation"
+            button5 = "Win/Lose"
+            button6 = "Win margin"
+            button7 = "Shoot/Pass"
+    if player.Context == "Business":
+        if player.InfoOrderGroup == "A":
+            button1 = "Human/A.I."
+            button2 = "Strategy"
+            button3 = "Motivation"
+            button4 = "Vote margin"
+            button5 = "Financial Outcome"
+            button6 = "Industry"
+            button7 = "Environment Outcome"
+        if (player.InfoOrderGroup == "B") + (player.InfoOrderGroup == "C") >= 1:
+            button1 = "Strategy"
+            button2 = "Motivation"
+            button3 = "Financial Outcome"
+            button4 = "Human/A.I."
+            button5 = "Industry"
+            button6 = "Environment Outcome"
+            button7 = "Vote margin"
+    return button1, button2, button3, button4, button5, button6, button7
+
+def buttonlabelsFootDummy(player: Player):
+      #Self made OR statement since OTree was being bitchy
+    if (player.InfoOrderGroup == "A" ) + (player.InfoOrderGroup == "B") >=1:
+        button1 = "Human/A.I."
+        button2 = "Shoot/Pass"
+        button3 = "Motivation"
+        button4 = "Win margin"
+        button5 = "Score/Miss"
+        button6 = "Home/Away"
+        button7 = "Win/Lose"
+    if player.InfoOrderGroup == "C":
+        button1 = "Score/Miss"
+        button2 = "Home/Away"
+        button3 = "Human/A.I."
+        button4 = "Motivation"
+        button5 = "Win/Lose"
+        button6 = "Win margin"
+        button7 = "Shoot/Pass"
+    return button1, button2, button3, button4, button5, button6, button7
+
+
+def buttonlabelsBusDummy(player: Player):
+    # Self made OR statement since OTree was being bitchy
+    if player.InfoOrderGroup == "A":
+        button1 = "Human/A.I."
+        button2 = "Strategy"
+        button3 = "Motivation"
+        button4 = "Vote margin"
+        button5 = "Financial Outcome"
+        button6 = "Industry"
+        button7 = "Environment Outcome"
+    if (player.InfoOrderGroup == "B") + (player.InfoOrderGroup == "C") >= 1:
+        button1 = "Strategy"
+        button2 = "Motivation"
+        button3 = "Financial Outcome"
+        button4 = "Human/A.I."
+        button5 = "Industry"
+        button6 = "Environment Outcome"
+        button7 = "Vote margin"
+    return button1, button2, button3, button4, button5, button6, button7
 
 def creating_session(subsession):
     import itertools
@@ -107,6 +194,46 @@ class Consent(Page):
     def is_displayed(player):
         return player.round_number == 1     # only display in  first round
 
+class ExampleFootball(Page):
+    def is_displayed(player):
+        return player.round_number == 1   # only display in  first round
+    @staticmethod
+    def js_vars(player):
+        return dict(
+            InfoOrder = player.InfoOrderGroup,
+        )
+    @staticmethod
+    def vars_for_template(player: Player):
+        return dict(
+            Button1=buttonlabelsFootDummy(player)[0],
+            Button2=buttonlabelsFootDummy(player)[1],
+            Button3=buttonlabelsFootDummy(player)[2],
+            Button4=buttonlabelsFootDummy(player)[3],
+            Button5=buttonlabelsFootDummy(player)[4],
+            Button6=buttonlabelsFootDummy(player)[5],
+            Button7=buttonlabelsFootDummy(player)[6]
+        )
+
+class ExampleBusiness(Page):
+    def is_displayed(player):
+        return player.round_number == 1  # only display in  first round
+    @staticmethod
+    def js_vars(player):
+        return dict(
+            InfoOrder=player.InfoOrderGroup,
+        )
+    @staticmethod
+    def vars_for_template(player: Player):
+        return dict(
+            Button1=buttonlabelsBusDummy(player)[0],
+            Button2=buttonlabelsBusDummy(player)[1],
+            Button3=buttonlabelsBusDummy(player)[2],
+            Button4=buttonlabelsBusDummy(player)[3],
+            Button5=buttonlabelsBusDummy(player)[4],
+            Button6=buttonlabelsBusDummy(player)[5],
+            Button7=buttonlabelsBusDummy(player)[6]
+        )
+
 class Response(Page):
     form_model = 'player'
     form_fields = ['CausalScore','BonusScore']
@@ -116,7 +243,7 @@ class Response(Page):
 
 class InfoBlocks(Page):
     form_model = 'player'
-    form_fields = ['Timeb1', 'Timeb2', 'Timeb3', 'Timeb4', 'Timeb5', 'Timeb6', 'Timeb7']
+    form_fields = ['Timeb1', 'Timeb2', 'Timeb3', 'Timeb4', 'Timeb5', 'Timeb6', 'Timeb7', 'Viewsb1', 'Viewsb2', 'Viewsb3', 'Viewsb4', 'Viewsb5', 'Viewsb6', 'Viewsb7']
     @staticmethod
     def js_vars(player):
         return dict(
@@ -133,7 +260,18 @@ class InfoBlocks(Page):
 
     @staticmethod
     def vars_for_template(player: Player):
-        return dict(OutcomeResponseTxt=context_description(player))
+        return dict(
+            ContextDescr=context_description(player),
+            Button1=buttonlabels(player)[0],
+            Button2=buttonlabels(player)[1],
+            Button3=buttonlabels(player)[2],
+            Button4=buttonlabels(player)[3],
+            Button5=buttonlabels(player)[4],
+            Button6=buttonlabels(player)[5],
+            Button7=buttonlabels(player)[6]
+
+
+        )
 
 class ResultsWaitPage(WaitPage):
     pass
@@ -171,4 +309,6 @@ class Closing(Page):
     def is_displayed(player):
         return player.round_number == Constants.num_rounds    # only display in  last round
 
-page_sequence = [Consent, FixationCross, InfoBlocks, Response, ExperimentAlmostDone, Numeracy, PostQuestions, Closing]
+
+
+page_sequence = [Consent, ExampleFootball, ExampleBusiness, FixationCross, InfoBlocks, Response, ExperimentAlmostDone, Numeracy, PostQuestions, Closing]

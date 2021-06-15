@@ -7,21 +7,20 @@ Causality Determination Online Experiment
 <p><b>Experiment Instructions:</b></p>
 
 <p>Welcome to this Causality Determination online experiment. The experiment is designed and developed for academic purposes by myself, Matthew White, under the supervision of Dr. Jan Hausfeld. </p>
-<p> In the following rounds, you will be presented with several hypothetical scenarios. In each scenario, a certain agent will make a decision which will result in a certain outcome. Information regarding the scenario will be presented by means of 7 information blocks. The content of these blocks is hidden, but is revealed when you move your cursor over the panel. An example of this is given below: </p>
-<button type="button" class="hover" id="bt" style="width:200px; height:100px" onmouseover="TestButtonOn()" onmouseout="TestButtonOff()" >
-</button>
+<p>In the following rounds, you will be presented with several hypothetical scenarios. In each scenario, a certain individual <i>(Agent)</i> will make a decision; and there is a certain end-result <i>(Outcome)</i>. Your task, in each round, is to answer the question: how much do you think that the <i>Agent</i> is responsible for the <i>Outcome</i> occurring? Similarly, you will then be asked to recommend a bonus or malus (negative bonus) for the <i>Agent</i>. This suggestion should be independent of how the individual is incentivised, i.e. it should be made based on your gut-feel about the impact of this individual. </p>
 <p></p>
-<p>Your task in each round is to observe the information presented in each scenario, and to make a decision on to what extent you felt that the agent in question caused the final outcome. Similarly, you will be asked to provide a recommendation as to the bonus or malus (negative bonus) the agent should receive - based on how much that agent caused the end outcome. This bonus/malus is independent of the agent’s personal incentives, and should be made using your own intuition about the impact that this agent had.
+<p>Information regarding each scenario will be presented by means of 7 information blocks. It is up to you to decide which of this information is most relevant to answer the question. The content of these blocks is hidden, but is revealed when you move your cursor over the panel.
 </p>
-    <p>There is no time-limit for this task, and the experiment will continue until you have completed 32 rounds. The entire experiment should take approximately 15 minutes to complete. </p>
-<p></p><p></p>
+<p>There is no time-limit for this task, and the experiment will continue until you have completed 32 rounds. The entire experiment should take approximately 15 minutes to complete. </p>
+
+<p><b>Practise rounds</b></p>
+<p>Each scenario will be set in one of two contexts: <i>Football</i> or <i>Business</i>.
+</p>
+<p>There will be a practise round for each context to help explain how to interpret the information. </p>
+
 <p><b>Payment for participation</b></p>
 <p>All participants will be entered into a lottery, from which 5 names will be randomly selected to each with €10. Performance in the experiment will therefore not influence your final earnings. Failure to complete the experiment, however, would exclude you from the lottery.
 </p>
-<p><b>Scenario Contexts</b></p>
-<p>Each scenario will be set in one of two contexts: <i>Football</i> or <i>Business</i>.</p>
-<p>In the <i>Football</i> scenario, the agent can either choose to shoot to attempt to score a goal, or can pass the ball to allow another teammate to shoot. This can result in either a goal being scored or not, which ultimately leads to the final outcome of whether the team wins or loses. For the sake of this experiment, assume that you support the team for which the agent is playing.</p>
-<p>In the <i>Business</i> scenario, the agent chooses between adopting a new policy or staying with the same policy. Based on this decision, the company will see a change in their profits, as well as in their environmental footprint. The environmental impact is the ‘end outcome’ for which you will indicate the causal responsibility attributed to the agent. </p>
 <p><b>Post-Experiment Question</b></p>
 <p>After the completion of the experiment, you will be asked to answer a single probability question to test your statistical literacy. Please answer this question to the best of your ability.
 </p>
@@ -33,8 +32,7 @@ Causality Determination Online Experiment
 </p>
 
 <p><b>Questions</b></p>
-<p>
-    If you have any questions before, during, or after the experiment, please feel free to contact myself at <a>Matthew.White@student.uva.nl</a></p>
+<p>If you have any questions before, during, or after the experiment, please feel free to contact myself at <a>Matthew.White@student.uva.nl</a></p>
 <p><b>Consent</b></p>
 <p>By selecting “Agree”, you confirm that you have read the above instructions, have not completed this experiment previously, and that you voluntarily agree to participate in this experiment. </p>
 
@@ -44,11 +42,3 @@ Causality Determination Online Experiment
 
 {{ endblock }}
 
-<script>
-    function TestButtonOn() {
-        document.getElementById("bt").innerHTML = "You are cool for participating!"
-}
-    function TestButtonOff() {
-        document.getElementById("bt").innerHTML = ""
-}
-</script>

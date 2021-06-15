@@ -1,5 +1,5 @@
 {{ block title }}
-Response
+Response (Round {{player.round_number }} of {{Constants.num_rounds}})
 {{ endblock }}
 {{ block content }}
     <p>
@@ -8,7 +8,8 @@ Response
         Based on the previous screen, to what extent do you feel the <i>agent*</i> caused {{ OutcomeResponseTxt }}?
         {{ formfield 'CausalScore' }}
         <br>
-        Assuming that the <i>agent*</i> is currently paid at a fair market rate, what bonus or malus (negative) would you recommend for this agent (as a % of their annual income)?
+        Assuming that the <i>agent*</i> is currently paid at a fair market rate, what bonus or malus (negative) would you recommend for this agent (as a % of their annual income)? <br>
+        Remember this independent of the agent’s personal incentives, and should be made using your own intuition.
         <br>{{ formfield 'BonusScore' }}
         <br>
         <i>*In the case of a computerized agent, assume this refers to the developer of the agent.</i>
