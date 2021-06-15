@@ -8,7 +8,7 @@ Causal Determination Mouse-tracking experiment
 class Constants(BaseConstants):
     name_in_url = 'CausalDetermine'
     players_per_group = None
-    num_rounds = 32
+    num_rounds = 3
 
 
 class Subsession(BaseSubsession):
@@ -23,7 +23,7 @@ class Player(BasePlayer):
     GivesConsent = models.BooleanField(widget=widgets.CheckboxInput(), label="Agree")
     CausalScore = models.StringField(widget=widgets.RadioSelectHorizontal, choices=['Not at all', 'Very Slightly', 'Slightly', 'Neutral', 'Moderately', 'Very much',
                                                                                      'Almost Entirely'], label="Causal Attribution: ")
-    BonusScore = models.IntegerField(widget=widgets.RadioSelectHorizontal, choices=[[-10,'-10%'], [-1,'-1%'], [0,'0%'], [1,'1%'], [10,'10%']], label="Bonus Attribution: ")
+    BonusScore = models.IntegerField(widget=widgets.RadioSelectHorizontal, choices=[[-10,'-10%'], [-1,'-1%'], [0,'0%'], [1,'1%'], [10,'10%']], label="Bonus / Malus: ")
     Timeb1 = models.FloatField(blank=True, default=0.0)
     Timeb2 = models.FloatField(blank=True, default=0.0)
     Timeb3 = models.FloatField(blank=True, default=0.0)
@@ -72,9 +72,9 @@ def response_outcome(player: Player):
 
 def context_description(player: Player):
     if player.Context == "Football":
-        Context_Descr = "In the football scenario, the Agent is either a professional football player or a pre-programmed football-AI. This agent then, during a point in the game, is faced with either passing the ball, or shooting to try and score. Either way, this can result in a goal being scored off of the play, or not. The end outcome is then either a win or a loss at the end of the game, and that could be by various margins. For the sake of this experiment, assume that you support the team for which the agent is playing. <br><br><u>The question is: to what extent did the football agent cause their team to win/lose?</u> "
+        Context_Descr = "In the football scenario, the Agent is either a professional football player or a pre-programmed football-AI. This agent then, during a point in the game, is faced with either passing the ball, or shooting to try and score. Either way, this can result in a goal being scored off of the play, or not. The end outcome is then either a win or a loss at the end of the game, and that could be by various margins. For the sake of this experiment, assume that you support the team for which the agent is playing. <br><br><b><u>The question is: to what extent did the football agent cause their team to win/lose?</b></u> "
     elif player.Context == "Business":
-        Context_Descr = "In the business scenario, the Agent is either a senior business executive or a pre-programmed strategic-AI. This agent then votes on whether or not their firm should adopt a new business strategy. The individual’s vote can pass by one or more votes on the voting panel (we do not consider cases where the agent was outvoted). In the months following the chosen strategy, the company then either sees an increase or a decrease in their profits; as well as either an improvement or worsening of their environmental footprint. <br><br>The question is: to what extent did the strategy agent cause their firm’s environmental footprint to improve/worsen? "
+        Context_Descr = "In the business scenario, the Agent is either a senior business executive or a pre-programmed strategic-AI. This agent then votes on whether or not their firm should adopt a new business strategy. The individual’s vote can pass by one or more votes on the voting panel (we do not consider cases where the agent was outvoted). In the months following the chosen strategy, the company then either sees an increase or a decrease in their profits; as well as either an improvement or worsening of their environmental footprint. <br><br><b><u>The question is: to what extent did the strategy agent cause their firm’s environmental footprint to improve/worsen?</b></u> "
     return Context_Descr
 
 def buttonlabels(player: Player):
