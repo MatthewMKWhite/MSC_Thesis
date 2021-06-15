@@ -8,7 +8,7 @@ Causal Determination Mouse-tracking experiment
 class Constants(BaseConstants):
     name_in_url = 'CausalDetermine'
     players_per_group = None
-    num_rounds = 3
+    num_rounds = 32
 
 
 class Subsession(BaseSubsession):
