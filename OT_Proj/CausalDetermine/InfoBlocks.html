@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 
 {{ block title }}
-    Information Blocks
+Information Blocks (Round {{player.round_number }} of {{Constants.num_rounds}})
 {{ endblock }}
 {% block content %}
 
     <meta charset="UTF-8">
-<p><b>Context:</b> <i>{{ player.Context }}</i></p>
-    <p> {{ OutcomeResponseTxt }}<br></p>
+<p style="font-size: 25px"><b>Context:</b> <i>{{ player.Context }}</i></p>
+    <p> {{ ContextDescr }}<br></p>
 <br>
-    <table style="table-layout: fixed; width:100%" >
+    <table style="table-layout: fixed; width:100%; text-align:center"  >
     <tr>
         <td>
 
         </td>
         <td>
+            {{ Button1 }}
             <button type="button" class="hover" id="b1" style="width:100%; height:100px" onmouseover="Button1MouseOn()"
                     onmouseout="Button1MouseOff()" >
 
@@ -24,6 +25,7 @@
 
         </td>
         <td>
+            {{ Button2 }}
             <button type="button" class="hover" id="b2" style="width:100%; height:100px" onmouseover="Button2MouseOn()"
                     onmouseout="Button2MouseOff()">
 
@@ -35,6 +37,7 @@
     </tr>
     <tr>
         <td>
+            {{ Button3 }}
             <button type="button" id="b3" style="width:100%; height:100px" onmouseover="Button3MouseOn()"
                     onmouseout="Button3MouseOff()">
 
@@ -44,12 +47,13 @@
 
         </td>
         <td>
-
+            {{ next_button }}
         </td>
         <td>
 
         </td>
         <td>
+            {{ Button4 }}
             <button type="button" id="b4" style="width:100%; height:100px" onmouseover="Button4MouseOn()"
                     onmouseout="Button4MouseOff()">
             </button>
@@ -60,6 +64,7 @@
 
         </td>
         <td>
+            {{ Button5 }}
             <button type="button" id="b5" style="width:100%; height:100px" onmouseover="Button5MouseOn()"
                     onmouseout="Button5MouseOff()">
             </button>
@@ -68,6 +73,7 @@
 
         </td>
         <td>
+            {{ Button6 }}
             <button type="button"  id="b6" style="width:100%; height:100px" onmouseover="Button6MouseOn()"
                     onmouseout="Button6MouseOff()">
 
@@ -85,6 +91,7 @@
 
         </td>
         <td>
+            {{ Button7 }}
             <button type="button" id="b7" style="width:100%; height:100px" onmouseover="Button7MouseOn()"
                     onmouseout="Button7MouseOff()">
 
@@ -100,7 +107,7 @@
     </table>
     <p>
     </p>
-    {{ next_button }}
+
 
 <input type="hidden" name="Timeb1" id="Timeb1" />
 <input type="hidden" name="Timeb2" id="Timeb2" />
@@ -109,6 +116,14 @@
 <input type="hidden" name="Timeb5" id="Timeb5" />
 <input type="hidden" name="Timeb6" id="Timeb6" />
 <input type="hidden" name="Timeb7" id="Timeb7" />
+
+<input type="hidden" name="Viewsb1" id="Viewsb1" />
+<input type="hidden" name="Viewsb2" id="Viewsb2" />
+<input type="hidden" name="Viewsb3" id="Viewsb3" />
+<input type="hidden" name="Viewsb4" id="Viewsb4" />
+<input type="hidden" name="Viewsb5" id="Viewsb5" />
+<input type="hidden" name="Viewsb6" id="Viewsb6" />
+<input type="hidden" name="Viewsb7" id="Viewsb7" />
 
 <script>
 let But1 = document.createElement("input");
@@ -174,6 +189,63 @@ var b7_start = {id: b7_start}
 var b7_culm = {id: b7_culm}
 b7_culm = 0;
 
+let View1 = document.createElement("input");
+View1.type = 'hidden';
+View1.name = 'Viewsb1';
+View1.id = 'Viewsb1';
+View1.value = '0';
+var b1_views = {id: b1_views}
+b1_views = 0;
+
+let View2 = document.createElement("input");
+View2.type = 'hidden';
+View2.name = 'Viewsb2';
+View2.id = 'Viewsb2';
+View2.value = '0';
+var b2_views = {id: b2_views}
+b2_views = 0;
+
+let View3 = document.createElement("input");
+View3.type = 'hidden';
+View3.name = 'Viewsb1';
+View3.id = 'Viewsb1';
+View3.value = '0';
+var b3_views = {id: b3_views}
+b3_views = 0;
+
+let View4 = document.createElement("input");
+View4.type = 'hidden';
+View4.name = 'Viewsb4';
+View4.id = 'Viewsb4';
+View4.value = '0';
+var b4_views = {id: b4_views}
+b4_views = 0;
+
+let View5 = document.createElement("input");
+View5.type = 'hidden';
+View5.name = 'Viewsb5';
+View5.id = 'Viewsb5';
+View5.value = '0';
+var b5_views = {id: b5_views}
+b5_views = 0;
+
+let View6 = document.createElement("input");
+View6.type = 'hidden';
+View6.name = 'Viewsb6';
+View6.id = 'Viewsb6';
+View6.value = '0';
+var b6_views = {id: b6_views}
+b6_views = 0;
+
+let View7 = document.createElement("input");
+View7.type = 'hidden';
+View7.name = 'Viewsb7';
+View7.id = 'Viewsb7';
+View7.value = '0';
+var b7_views = {id: b7_views}
+b7_views = 0;
+
+
 let InfoOrder = js_vars.InfoOrder
 let Agent = js_vars.Agent
 let Outcome1 = js_vars.Outcome1
@@ -182,11 +254,32 @@ let Action = js_vars.Action
 let Incentive = js_vars.Incentive
 let Pivotality = js_vars.Pivotality
 let Context = js_vars.Context
-var Dummy = "Dummy text"
+let DummyCode = js_vars.Dummy
+
 var AgentFiller = "Agent is a "
 var FootballOutcomeFiller = "The agent's team "
 var BusinessOutcomeFiller = "The company's environmental footprint "
 var IncentiveFiller = "Incentives are paid based on "
+var Dummy="";
+var DummyFiller="";
+
+if(Context == "Business")
+    {
+    DummyFiller = "Company works in ";
+    if (DummyCode == "A")
+        {Dummy = "insurance"}
+    else
+        {Dummy = "banking"}
+    }
+else{
+    DummyFiller = "Agent was playing on ";
+    if (DummyCode == "A")
+        {Dummy = "home ground"}
+    else
+        {Dummy = "away ground"}
+    }
+
+
 
 document.addEventListener("DOMContentLoaded", function(debug=true) {
         console.log('Loading info');
@@ -199,6 +292,13 @@ document.addEventListener("DOMContentLoaded", function(debug=true) {
             OtreeBody.appendChild(But5)
             OtreeBody.appendChild(But6)
             OtreeBody.appendChild(But7)
+            OtreeBody.appendChild(View1)
+            OtreeBody.appendChild(View2)
+            OtreeBody.appendChild(View3)
+            OtreeBody.appendChild(View4)
+            OtreeBody.appendChild(View5)
+            OtreeBody.appendChild(View6)
+            OtreeBody.appendChild(View7)
         ;})
 
 function Button1MouseOn() {
@@ -216,6 +316,8 @@ function Button1MouseOff() {
   var b1_end = Date.now() - b1_start
   b1_culm = b1_culm + b1_end
   document.getElementById("Timeb1").value = b1_culm;
+  if (b1_end >= 200){b1_views = b1_views +1;}
+  document.getElementById("Viewsb1").value = b1_views
 }
 
 
@@ -226,7 +328,7 @@ function Button2MouseOn() {
   else if (Context == "Business"){
     document.getElementById("b2").innerHTML = IncentiveFiller.concat(Incentive);}
   else if (InfoOrder == "C" && (Context=="Football")){
-    document.getElementById("b2").innerHTML = Dummy;}
+    document.getElementById("b2").innerHTML = DummyFiller.concat(Dummy);}
 }
 
 function Button2MouseOff() {
@@ -234,6 +336,9 @@ function Button2MouseOff() {
   var b2_end = Date.now() - b2_start
   b2_culm = b2_culm + b2_end
   document.getElementById("Timeb2").value = b2_culm;
+  if (b2_end >= 200){
+        b2_views = b2_views +1;}
+  document.getElementById("Viewsb2").value = b2_views
 }
 
 function Button3MouseOn() {
@@ -251,6 +356,9 @@ function Button3MouseOff() {
   var b3_end = Date.now() - b3_start
   b3_culm = b3_culm + b3_end
   document.getElementById("Timeb3").value = b3_culm;
+  if (b3_end >= 200){
+        b3_views = b3_views +1;}
+  document.getElementById("Viewsb3").value = b3_views
 }
 
 function Button4MouseOn() {
@@ -268,6 +376,9 @@ function Button4MouseOff() {
   var b4_end = Date.now() - b4_start
   b4_culm = b4_culm + b4_end
   document.getElementById("Timeb4").value = b4_culm;
+  if (b4_end >= 200){
+        b4_views = b4_views +1;}
+  document.getElementById("Viewsb4").value = b4_views
 }
 
 function Button5MouseOn() {
@@ -275,7 +386,7 @@ function Button5MouseOn() {
   if (InfoOrder == "A" || (InfoOrder == "B" && Context=="Football")){
     document.getElementById("b5").innerHTML = Outcome1;}
   else if (Context == "Business"){
-    document.getElementById("b5").innerHTML = Dummy;}
+    document.getElementById("b5").innerHTML = DummyFiller.concat(Dummy);}
   else if (InfoOrder == "C" && (Context=="Football")){
     document.getElementById("b5").innerHTML = FootballOutcomeFiller.concat(Outcome2).concat("s");}
 }
@@ -285,12 +396,15 @@ function Button5MouseOff() {
   var b5_end = Date.now() - b5_start
   b5_culm = b5_culm + b5_end
   document.getElementById("Timeb5").value = b5_culm;
+  if (b5_end >= 200){
+        b5_views = b5_views +1;}
+  document.getElementById("Viewsb5").value = b5_views
 }
 
 function Button6MouseOn() {
   b6_start = Date.now();
   if (InfoOrder == "A" || (InfoOrder == "B" && Context=="Football")){
-    document.getElementById("b6").innerHTML = Dummy;}
+    document.getElementById("b6").innerHTML = DummyFiller.concat(Dummy);}
   else if (Context == "Business"){
     document.getElementById("b6").innerHTML = BusinessOutcomeFiller.concat(Outcome2).concat("s");}
   else if (InfoOrder == "C" && (Context=="Football")){
@@ -302,6 +416,9 @@ function Button6MouseOff() {
   var b6_end = Date.now() - b6_start
   b6_culm = b6_culm + b6_end
   document.getElementById("Timeb6").value = b6_culm;
+  if (b6_end >= 200){
+        b6_views = b6_views +1;}
+  document.getElementById("Viewsb6").value = b6_views
 }
 
 function Button7MouseOn() {
@@ -322,6 +439,9 @@ function Button7MouseOff() {
   var b7_end = Date.now() - b7_start
   b7_culm = b7_culm + b7_end
   document.getElementById("Timeb7").value = b7_culm;
+  if (b7_end >= 200){
+        b7_views = b7_views +1;}
+  document.getElementById("Viewsb7").value = b7_views
 }
 
 

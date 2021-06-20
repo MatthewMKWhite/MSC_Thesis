@@ -1,26 +1,31 @@
 {{ block title }}
-    Experiment Instructions
+<img src="{{ static 'University_Logo.jpg' }}" width="50%" height="50%"/> <br><br>
+Welcome to my online experiment!
 {{ endblock }}
+
 {{ block content }}
-<p><b>Overall Instructions:</b></p>
-<p>Welcome to this Causality Determination online experiment. The experiment is designed and developed for academic purposes by myself, Matthew White, under the supervision of Dr. Jan Hausfeld. </p>
-<p> In the following rounds, you will be presented with several hypothetical scenarios. In each scenario, a certain agent will make a decision which will result in a certain outcome. Information regarding the scenario will be presented by means of 7 information blocks. The content of these blocks is hidden, but is revealed when you move your cursor over the panel. An example of this is given below: </p>
-<button type="button" class="hover" id="bt" style="width:200px; height:100px" onmouseover="TestButtonOn()" onmouseout="TestButtonOff()" >
-</button>
+<p><b>What it's about</b></p>
+<p>The experiment is designed and developed for academic purposes by myself, Matthew White, under the supervision of Dr. Jan Hausfeld. This experiment focuses on better understanding how people attribute causality to others.
+ </p>
+
+<p><b>Experiment Instructions</b></p>
+<p> </p>
+<p>In the following rounds, you will be presented with several hypothetical scenarios. In each scenario, a certain individual <i>(Agent)</i> will make a decision; and there is a certain end-result <i>(Outcome)</i>. Your task, in each round, is to answer the question: how much do you think that the <i>Agent</i> is responsible for the <i>Outcome</i> occurring? Similarly, you will then be asked to recommend a bonus or malus (negative bonus) for the <i>Agent</i>. You should allocate the bonus or malus points based upon what you think they deserve. </p>
 <p></p>
-<p>Your task in each round is to observe the information pertaining to the scenario, and make a decision on to what extent you felt that the agent in question caused the final outcome. Similarly, you will be asked to provide a recommendation as to the bonus or malus the agent should receive - based on how much that agent caused the end outcome. This bonus/malus is independent of the agent’s personal incentives, and should be made using your own intuition about the impact that this agent had.
+<p>There are two screens in each round. On the first screen, information regarding each scenario will be presented by means of 7 information blocks. The content of these blocks is hidden, but is revealed when you move your cursor over the panel. You can choose freely which information to look at or not. On the second screen you will be asked to judge the actions from the previous screen.
 </p>
-    <p>There is no time-limit for this task, and the experiment will continue until you have completed 32 rounds. The entire experiment should take approximately 15 minutes to complete. </p>
-<p></p><p></p>
+<p>There is no time-limit for this task, and the experiment will continue until you have completed 32 rounds. The entire experiment should take approximately 15-20 minutes to complete. </p>
+
+<p><b>Practise rounds</b></p>
+<p>Each scenario will be set in one of two contexts: <i>Football</i> or <i>Business</i>.
+</p>
+<p>There will be a practise round for each context to help explain how to interpret the information. </p>
+
 <p><b>Payment for participation</b></p>
-<p>All participants will be entered into a lottery, from which 5 names will be randomly selected to each with €10. Performance in the experiment will therefore not influence your final earnings. Failure to complete the experiment, however, would exclude you from the lottery.
+<p>All participants will be entered into a lottery, from which 5 names will be randomly selected to each with €10. Note that there are no correct or incorrect choices, we are simply interested on how you decide. Also, if drawn from the lottery, you would receive the 10 Euros irrespective of your decisions. Failure to complete the experiment, however, would exclude you from the lottery.
 </p>
-<p><b>Scenario Contexts</b></p>
-<p>Each scenario will be set in one of two contexts: <i>Football</i> or <i>Business</i>.</p>
-<p>In the <i>Football</i> scenario, the agent can either choose to shoot to attempt to score a goal, or can pass the ball to allow another teammate to shoot. This can result in either a goal being scored or not, which ultimately leads to the final outcome of whether or not the team loses. For the sake of this experiment, assume that you support the team for which the agent is playing.</p>
-<p>In the <i>Business</i> scenario, the agent chooses between adopting a new policy or staying with the same policy. Based on this decision, the company will see a change in their profits, as well as in their environmental footprint. The environmental impact is the ‘end outcome’ for which you will indicate the causal responsibility attributed to the agent. </p>
-<p><b>Post-Experiment Questions</b></p>
-<p>After the completion of the experiment, you will be asked to answer a few short questions to test your statistical literacy. Please answer these questions to the best of your ability.
+<p><b>Post-Experiment Question</b></p>
+<p>After the completion of the experiment, you will be asked to answer a single probability question to test your statistical literacy. Please answer this question to the best of your ability.
 </p>
 <p><b>Personal and Contact Information </b></p>
 <p>Following the experiment, you will be asked to provide some of your personal information, including your age, education, nationality, and employment type. This information will be used to account for between-subject heterogeneity, and will not be linked to you as an individual in any way.</p>
@@ -30,8 +35,7 @@
 </p>
 
 <p><b>Questions</b></p>
-<p>
-    If you have any questions before, during, or after the experiment, please feel free to contact myself at <a>Matthew.White@student.uva.nl</a></p>
+<p>If you have any questions before, during, or after the experiment, please feel free to contact myself at <a>Matthew.White@student.uva.nl</a></p>
 <p><b>Consent</b></p>
 <p>By selecting “Agree”, you confirm that you have read the above instructions, have not completed this experiment previously, and that you voluntarily agree to participate in this experiment. </p>
 
@@ -41,11 +45,3 @@
 
 {{ endblock }}
 
-<script>
-    function TestButtonOn() {
-        document.getElementById("bt").innerHTML = "You are cool for participating!"
-}
-    function TestButtonOff() {
-        document.getElementById("bt").innerHTML = ""
-}
-</script>
